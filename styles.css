@@ -222,6 +222,25 @@ body {
     transition: var(--transition);
 }
 
+.btn-download {
+    background: linear-gradient(to right, #B33F00, #E55807);
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-download:hover {
+    background: linear-gradient(to right, #8C3200, #B33F00);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.actions-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
