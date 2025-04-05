@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Registro Cafetero</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <i class="fas fa-coffee logo-icon"></i>
+                <h1>Sistema de Registro Cafetero</h1>
+            </div>
+            <p class="app-description">Gestión profesional de recolección semanal</p>
+        </header>
+
+        <main class="app-content">
+            <section class="card user-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-user"></i> Datos del Recolector</h2>
+                </div>
+                <div class="card-body">
+                    <form id="userForm" class="form-grid">
+                        <div class="form-group">
+                            <label for="userName">Nombre completo</label>
+                            <input type="text" id="userName" placeholder="Ej: Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userDoc">Número de documento</label>
+                            <input type="text" id="userDoc" placeholder="Ej: 123456789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPhone">Teléfono (opcional)</label>
+                            <input type="tel" id="userPhone" placeholder="Ej: 3001234567">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Guardar Datos
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="card coffee-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-clipboard-list"></i> Registro Diario</h2>
+                </div>
+                <div class="card-body">
+                    <form id="coffeeForm">
+                        <div class="form-group price-group">
+                            <label for="pricePerKilo">Precio por kilo ($)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                                <input type="number" id="pricePerKilo" min="1" step="0.01" placeholder="Ej: 2500" required>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="coffee-table">
+                                <thead>
+                                    <tr>
+                                        <th class="day-col">Día</th>
+                                        <th class="kilos-col">Kilos Recolectados</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Lunes</td>
+                                        <td>
+                                            <div class="input-with-icon">
+                                                <i class="fas fa-weight"></i>
+                                                <input type="number" id="monday" class="dayKilos" min="0" step="0.01" placeholder="0.00" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Martes</td>
+                                        <td>
+                                            <div class="input-with-icon">
+                                                <i class="fas fa-weight"></i>
+                                                <input type="number" id="tuesday" class="dayKilos" min="0" step="0.01" placeholder="0.00" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Miércoles</td>
+                                        <td>
+                                            <div class="input-with-icon">
+                                                <i class="fas fa-weight"></i>
+                                                <input type="number" id="wednesday" class="dayKilos" min="0" step="0.01" placeholder="0.00" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jueves</td>
+                                        <td>
+                                            <div class="input-with-icon">
+                                                <i class="fas fa-weight"></i>
+                                                <input type="number" id="thursday" class="dayKilos" min="0" step="0.01" placeholder="0.00" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Viernes</td>
+                                        <td>
+                                            <div class="input-with-icon">
+                                                <i class="fas fa-weight"></i>
+                                                <input type="number" id="friday" class="dayKilos" min="0" step="0.01" placeholder="0.00" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-calculator"></i> Calcular Totales
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="card results-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-bar"></i> Resumen Semanal</h2>
+                </div>
+                <div class="card-body">
+                    <div id="dailySummary" class="daily-summary"></div>
+                    <div id="results" class="results-grid">
+                        <div class="result-item total-kilos">
+                            <h3>Total kilos recolectados</h3>
+                            <p><span id="totalKilos">0.00</span> kg</p>
+                        </div>
+                        <div class="result-item total-earnings">
+                            <h3>Ganancias totales</h3>
+                            <p>$<span id="totalEarnings">0.00</span></p>
+                        </div>
+                    </div>
+                    <div class="actions-container">
+                        <button id="clearData" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Eliminar Datos
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>Sistema desarrollado para la gestión cafetera &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
